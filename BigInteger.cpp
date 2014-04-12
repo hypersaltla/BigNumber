@@ -36,11 +36,11 @@ class BigInteger
     }
     
     BigInteger& operator=(const char* other)
-	{
+    {
         clear();
         this->copy(other);
 		return *this;
-	}
+    }
     
     BigInteger& operator=(const string& other)
     {
@@ -56,31 +56,31 @@ class BigInteger
         return *this;
     }
     
-	string str() const
-	{
-		string res;
+    string str() const
+    {
+    	string res;
         if (!sign) {
             if (len > 1 || num[0] != 0) {
                 res.push_back('-');
             }
         }
-		for(int i = len - 1; i >= 0; i--)
-			res.push_back( num[i] + '0');
-		return res;
-	}
+	for(int i = len - 1; i >= 0; i--)
+	    res.push_back( num[i] + '0');
+        return res;
+    }
      
-	friend istream& operator>>(istream &in, BigInteger& x)
-	{
-		string s;
-		in >> s;
-		x = s;
-		return in;
-	}
-	friend ostream& operator<<(ostream &out, BigInteger& x)
-	{
-		out << x.str();
-		return out;
-	}
+    friend istream& operator>>(istream &in, BigInteger& x)
+    {
+    	string s;
+    	in >> s;
+    	x = s;
+    	return in;
+    }
+    friend ostream& operator<<(ostream &out, BigInteger& x)
+    {
+    	out << x.str();
+    	return out;
+    }
     
     BigInteger add(const BigInteger &other) const
     {
@@ -93,19 +93,19 @@ class BigInteger
         new_int.sign = sign;
         char carry = 0;
         
-		for(int i = 0; i < new_int.len; i++)
-		{
-			char digit = carry;
-			if( i < len ) digit += num[i];
-			if( i < other.len) digit += other.num[i];
-			new_int.num[i] = digit % 10;
-			carry = digit / 10;
-		}
+	for(int i = 0; i < new_int.len; i++)
+    	{
+            char digit = carry;
+            if( i < len ) digit += num[i];
+            if( i < other.len) digit += other.num[i];
+            new_int.num[i] = digit % 10;
+	    carry = digit / 10;
+	}
         if (new_int.num[new_int.len - 1] == 0) { //if most significant digit is zero
             new_int.len--;
         }
         
-		return new_int;
+	return new_int;
     }
     
     BigInteger subtract(const BigInteger &other) const
@@ -269,14 +269,14 @@ class BigInteger
         return new_int;
     }
                                          
-	BigInteger& operator+=(const BigInteger &other)
-	{
-		return *this = this->add(other);
-	}
+    BigInteger& operator+=(const BigInteger &other)
+    {
+        return *this = this->add(other);
+    }
     BigInteger& operator-=(const BigInteger &other)
-	{
-		return *this = this->subtract(other);
-	}
+    {
+        return *this = this->subtract(other);
+    }
     BigInteger& operator*=(const BigInteger &other)
     {
         return *this = this->multiply(other);
@@ -286,29 +286,28 @@ class BigInteger
         return *this = other.divide(*this);
     }
     
-	BigInteger& operator++()
-	{
-		return this->increment();
-	}
-	const BigInteger operator++(int)
-	{
-		BigInteger c = *this;
+    BigInteger& operator++()
+    {
+        return this->increment();
+    }
+    const BigInteger operator++(int)
+    {
+        BigInteger c = *this;
         increment();
-		return c;
-	}
-	
-	BigInteger& operator--()
-	{
-		return this->decrement();
-	}
-	const BigInteger operator--(int)
-	{
-		BigInteger c = *this;
-		decrement();
-		return c;
-	}
+        return c;
+    }	
+    BigInteger& operator--()
+    {
+        return this->decrement();
+    }
+    const BigInteger operator--(int)
+    {
+        BigInteger c = *this;
+        decrement();
+        return c;
+    }
+
     private:
-    
     //the length of the integer
     int len;
     //the sign of the integer
