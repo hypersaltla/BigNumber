@@ -1,13 +1,24 @@
+/*
+ * Author: Chao Yan
+ * Email: chaoyanla@gmail.com
+ * Created in: Oct, 2010
+ * Modified in: April, 2014
+ *
+ * The BigInteger class implement the wrapper for big integers with unlimited length, with each digit
+ * represented in a byte. Currently the wrapper support add(+), subtract(-), multiply(*) and division(/),
+ * also assignment and comparison operators.
+ *
+ */
+
 #include<iostream>
 #include<string>
 #include<cstring>
 
 using namespace std;
-const int maxn=100;
 
 class BigInteger
 {
-	public:
+    public:
     
     BigInteger()
     {
@@ -39,7 +50,7 @@ class BigInteger
     {
         clear();
         this->copy(other);
-		return *this;
+        return *this;
     }
     
     BigInteger& operator=(const string& other)
